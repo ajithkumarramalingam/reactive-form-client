@@ -1,0 +1,120 @@
+// .reactive {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+  
+//     .name-box,
+//     .email-box,
+//     .mobileNumber-box,
+//     .message-box,
+//     .radio-btn,
+//     .check-box,
+//     .dropdown {
+//       margin-bottom: 10px;
+//     }
+  
+//     label {
+//       display: block;
+//       font-weight: bold;
+//       margin-bottom: 5px;
+//     }
+  
+//     input,
+//     textarea {
+//       width: 100%;
+//       padding: 5px;
+//       border: 1px solid #ccc;
+//       border-radius: 4px;
+//     }
+  
+//     .radio-btn {
+//       .field-checkbox {
+//         display: flex;
+//         align-items: center;
+//         margin-bottom: 5px;
+  
+//         input {
+//           margin-right: 5px;
+//         }
+//       }
+//     }
+  
+//     .check-box {
+//       display: flex;
+//       align-items: center;
+  
+//       label {
+//         margin-left: 5px;
+//       }
+//     }
+  
+//     .dropdown {
+//       width: 100%;
+//       max-width: 300px;
+  
+//       .p-dropdown {
+//         width: 100%;
+//       }
+//     }
+//   }
+  
+.reactive {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  
+    > form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+      .name-box,
+      .email-box,
+      .mobileNumber-box,
+      .message-box,
+      .radio-btn,
+      .check-box,
+      .dropdown,
+      .multi-dropdown,
+      .calender,
+      .fileUploder {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+  
+      .radio-btn {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+  
+        .field-checkbox {
+          display: flex;
+          align-items: center;
+  
+          input {
+            margin-right: 5px;
+          }
+        }
+      }
+  
+      .check-box {
+        label {
+          margin-left: 5px;
+        }
+      }
+  
+      .dropdown,
+      .multi-dropdown,
+      .calender,
+      .fileUploder {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  }
+  

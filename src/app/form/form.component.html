@@ -1,0 +1,60 @@
+<div class="reactive">
+    <form action="" [formGroup]="commonForm">
+        <div class="name-box">
+            <label for="name">Name</label>
+            <input type="text" pInputText formControlName="name" placeholder="Enter a Name" />
+        </div>
+        <div class="email-box">
+            <label for="email">Email</label>
+            <input type="text" pInputText formControlName="email" placeholder="Enter a Email" />
+        </div>
+        <div class="mobileNumber-box">
+            <label for="mobileNumber">Mobile number</label>
+            <input type="text" pInputText formControlName="mobileNumber" placeholder="Enter a Mobilenumber" />
+        </div>
+        <div class="message-box">
+            <label for="message">Message</label>
+            <textarea rows="5" cols="30" pInputTextarea formControlName="message" placeholder="Enter a Message">
+            </textarea>
+        </div>
+        <div class="radio-btn">
+            <label for="gender">Gender</label>
+            <div *ngFor="let category of categories" class="field-checkbox">
+                <p-radioButton [inputId]="category.key" [value]="category" formControlName="gender">
+                </p-radioButton>
+                <label [for]="category.key" class="ml-2">{{ category.name }}</label>
+            </div>
+        </div>
+        <div class="check-box">
+            <label for="city">City</label>
+            <p-checkbox formControlName="city" value="New York" inputId="ny" placeholder="Enter a City">
+            </p-checkbox>
+            <label for="ny">New York</label>
+        </div>
+        <div class="dropdown">
+            <label for="country">Country</label>
+            <p-dropdown [options]="cities" formControlName="country" optionLabel="name" [filter]="true"
+                placeholder="Select a Country"></p-dropdown>
+        </div>
+        <div class="multi-dropdown">
+            <label for="">Cities</label>
+            <p-multiSelect [options]="cities" formControlName="cities" optionLabel="name"
+                placeholder="Select a Cities"></p-multiSelect>
+        </div>
+        <div class="calender">
+            <label for="">Calender</label>
+            <p-calendar formControlName="calender" [showIcon]="true" placeholder="Enter a date"></p-calendar>
+        </div>
+        <div class="fileUploder">
+            <label for="">File</label>
+            <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                (onUpload)="onUpload($event)" [multiple]="true" accept="image/*">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload> 
+        </div>
+    </form>
+</div>

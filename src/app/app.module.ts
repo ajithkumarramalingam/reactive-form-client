@@ -15,6 +15,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AppService } from './app.service';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AppService } from './app.service';
     BrowserAnimationsModule,
     MultiSelectModule,
     CalendarModule,
-    FileUploadModule
+    FileUploadModule,
+    DialogModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

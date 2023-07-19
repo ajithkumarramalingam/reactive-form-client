@@ -65,22 +65,30 @@
             <label for="">Calender</label>
             <p-calendar formControlName="calender" [showIcon]="true" placeholder="Enter a date"></p-calendar>
         </div>
-
-        <div class="upload">
-            <div class="file">
-                <label class="upload-label">
-                    <div class="square-box" *ngIf="!selectedFile"></div>
-                    <img class="select-file" *ngIf="!selectedFile" src="../../assets/photo-upload.svg"
-                        alt="file-upload">
-                    <input class="hidden-input" type="file" (change)="onFileSelected($event)"
-                        accept=".jpg, .jpeg, .png, .xlsx, .xls image/*">
-                </label>
-                <span class="upload-text" *ngIf="!selectedFile">Upload File</span>
-            </div>
-            <span class="file-name" *ngIf="selectedFile">Selected File: {{ selectedFile.name }}</span>
+        <div class="upload-dia">
+            <p-button label="Upload" (click)="showDialog()"></p-button>
+            <p-dialog header="Upload File" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+                [draggable]="false" [resizable]="false">
+                <div class="upload">
+                    <div class="file">
+                        <label class="upload-label">
+                            <div class="square-box" *ngIf="!selectedFile"></div>
+                            <img class="select-file" *ngIf="!selectedFile" src="../../assets/photo-upload.svg"
+                                alt="file-upload">
+                            <input class="hidden-input" type="file" (change)="onFileChange($event)"
+                                accept=".jpg, .jpeg, .png, .xlsx, .xls image/*">
+                        </label>
+                        <span class="upload-text" *ngIf="!selectedFile">Upload File</span>
+                    </div>
+                    <span class="file-name" *ngIf="selectedFile">Selected File: {{ selectedFile.name }}</span>
+                </div>
+                <div class="can-sub">
+                    <p-button class="can-button" label="Cancel"></p-button>
+                    <p-button class="sub-button" label="Submit"></p-button>
+                </div>
+            </p-dialog>
         </div>
-
-        <div class="Submit-btn">
+        <div class="submit-btn">
             <p-button label="Submit"></p-button>
         </div>
     </form>

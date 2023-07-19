@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.reactive {
+    form {
+        .upload-dia {
+            .p-dialog {
+                width: 400px !important;
+            .p-dialog-content {
+                padding: 0px 30px 10px 30px;
+            }
+        }
+            .can-sub {
+                .can-button {
+                    .p-ripple {
+                    background: none !important;
+                    border: 1px solid gray;
+                    color: black;
+                  }
+                }
+            }
+        }
+    }
+}

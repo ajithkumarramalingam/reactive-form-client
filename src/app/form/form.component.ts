@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from '../app.service';
+import * as XLSX from 'xlsx';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -21,20 +22,19 @@ interface City {
 export class FormComponent implements OnInit {
   selectedFile: File | null = null;
   selectedFileUrl: string | ArrayBuffer | null | undefined;
+  selectedFileName: string | any;
   constructor(
     private fb: FormBuilder,
-    private messageService: MessageService,
     private http: HttpClient,
     private appservice: AppService) { }
   uploadedFiles: any[] = [];
   commonForm: FormGroup | any;
   cities: City[] | any;
   selectedCountry: string | undefined;
-  date: Date | undefined;
-  name: string | any;
-  email: string | any;
-  phoneNumber: string | any;
-  allData: any;
+  jsonData:Array<any> = []
+  visible: boolean = false;
+
+
   ngOnInit(): void {
     this.commonForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -60,16 +60,24 @@ export class FormComponent implements OnInit {
     { name: 'Male', key: 'M' },
     { name: 'Female', key: 'F' }
   ];
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    this.selectedFile = file;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      this.selectedFileUrl = e.target?.result;
-      console.log('this.selectedFileUrl', this.selectedFileUrl)
+
+
+  onFileChange(event: any): void {
+    this.selectedFile = event.target.files[0] as File;
+    this.selectedFileName = this.selectedFile?.name || '';
+    const file = event.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.onload = (e: any) => {
+      const data = e.target.result;
+      const workbook = XLSX.read(data, { type: 'binary' });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+      this.jsonData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+      console.log('this.jsonDatathis.jsonData',this.jsonData)
     };
-    reader.readAsDataURL(file);
+    fileReader.readAsBinaryString(file);
   }
+  
 
   onUpload() {
     if (this.selectedFile) {
@@ -88,6 +96,9 @@ export class FormComponent implements OnInit {
       console.log('No file selected.');
     }
   }
+    showDialog() {
+        this.visible = true;
+    }
 
 
 

@@ -79,6 +79,7 @@
     .calender {
       p-calendar {
         width: 100%;
+        margin-bottom: 12px;
       }
     }
 
@@ -92,14 +93,13 @@
         }
       }
     }
-
+    .upload-dia {
     .upload {
-      height: 100px;
-      width: 150px;
+      height: 120px;
+      width: 100%;
       border: 2px dotted gray;
       border-radius: 4px;
-      margin-bottom: 12px;
-      margin-top: 12px;
+      margin: 0 auto;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -122,10 +122,19 @@
           height: 24px;
         }
       }
-
       .file-name {
         text-align: center;
       }
+    }
+    .can-sub {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 12px;
+      gap: 8px;
+    } 
+  }
+    .submit-btn {
+      margin-top: 12px;
     }
   }
 }

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
+import { AppService } from './app.service';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     CalendarModule,
     FileUploadModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

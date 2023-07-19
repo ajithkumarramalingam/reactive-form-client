@@ -27,9 +27,29 @@
         </div>
         <div class="check-box">
             <label for="city">City</label>
-            <p-checkbox formControlName="city" value="New York" inputId="ny" placeholder="Enter a City">
-            </p-checkbox>
-            <label for="ny">New York</label>
+            <div class="single">
+                <p-checkbox formControlName="city" value="New York" inputId="ny">
+                </p-checkbox>
+                <label for="ny">New York</label>
+            </div>
+        </div>
+        <div class="multiple-check">
+            <label for="">Food</label>
+            <div class="multi-box">
+                <p-checkbox formControlName="food" value="New York" inputId="ny">
+                </p-checkbox>
+                <label for="ny">Breakfast</label>
+            </div>
+            <div class="multi-box">
+                <p-checkbox formControlName="food" value="New York" inputId="ny">
+                </p-checkbox>
+                <label for="ny">Lunch</label>
+            </div>
+            <div class="multi-box">
+                <p-checkbox formControlName="food" value="New York" inputId="ny">
+                </p-checkbox>
+                <label for="ny">Dinner</label>
+            </div>
         </div>
         <div class="dropdown">
             <label for="country">Country</label>
@@ -45,16 +65,23 @@
             <label for="">Calender</label>
             <p-calendar formControlName="calender" [showIcon]="true" placeholder="Enter a date"></p-calendar>
         </div>
-        <div class="fileUploder">
-            <label for="">File</label>
-            <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
-                (onUpload)="onUpload($event)" [multiple]="true" accept="image/*">
-                <ng-template pTemplate="content">
-                    <ul *ngIf="uploadedFiles.length">
-                        <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-                    </ul>
-                </ng-template>
-            </p-fileUpload> 
+
+        <div class="upload">
+            <div class="file">
+                <label class="upload-label">
+                    <div class="square-box" *ngIf="!selectedFile"></div>
+                    <img class="select-file" *ngIf="!selectedFile" src="../../assets/photo-upload.svg"
+                        alt="file-upload">
+                    <input class="hidden-input" type="file" (change)="onFileSelected($event)"
+                        accept=".jpg, .jpeg, .png, .xlsx, .xls image/*">
+                </label>
+                <span class="upload-text" *ngIf="!selectedFile">Upload File</span>
+            </div>
+            <span class="file-name" *ngIf="selectedFile">Selected File: {{ selectedFile.name }}</span>
+        </div>
+
+        <div class="Submit-btn">
+            <p-button label="Submit"></p-button>
         </div>
     </form>
 </div>

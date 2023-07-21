@@ -83,8 +83,8 @@
                     <span class="file-name" *ngIf="selectedFile">Selected File: {{ selectedFile.name }}</span>
                 </div>
                 <div class="can-sub">
-                    <p-button class="can-button" label="Cancel"></p-button>
-                    <p-button class="sub-button" label="Submit"></p-button>
+                    <p-button class="can-button" (click)="cancelDialog()" label="Cancel"></p-button>
+                    <p-button class="sub-button" (click)="insert()" label="Submit"></p-button>
                 </div>
             </p-dialog>
         </div>

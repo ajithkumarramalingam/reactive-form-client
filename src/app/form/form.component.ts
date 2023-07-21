@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from '../app.service';
 import * as XLSX from 'xlsx';
+import { window, windowWhen } from 'rxjs';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -31,8 +32,14 @@ export class FormComponent implements OnInit {
   commonForm: FormGroup | any;
   cities: City[] | any;
   selectedCountry: string | undefined;
-  jsonData:Array<any> = []
+  jsonData: Array<any> = []
   visible: boolean = false;
+  allData:any;
+  payloads:any;
+  name:string='';
+  email:string='';
+  phoneNumber:string='';
+  
 
 
   ngOnInit(): void {
@@ -73,11 +80,30 @@ export class FormComponent implements OnInit {
       const firstSheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[firstSheetName];
       this.jsonData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-      console.log('this.jsonDatathis.jsonData',this.jsonData)
+      console.log('this.jsonDatathis.jsonData', this.jsonData)
+      this.payloads = this.jsonData;
+      console.log(this.payloads,"payload...................."); 
     };
     fileReader.readAsBinaryString(file);
   }
+  insert() {
+   this.payloads = this.payloads.map((e:any)=>({
+    name:e.Name,
+    email:e.Email,
+    phoneNumber:e.Phone
+   }))
+  console.log(this.payloads,"bodyyyyyyyyyy");
+    console.log("payload", this.payloads);
+    this.appservice.insert(this.payloads).subscribe((data:any)=>{
+      console.log(data,"dataaaaaaaa");
+      this.allData=data;
+      console.log(this.allData,"allllllllllll");
+    })
+    this.visible = false;
+    this.selectedFile = null;
+  }
   
+
 
   onUpload() {
     if (this.selectedFile) {
@@ -96,9 +122,13 @@ export class FormComponent implements OnInit {
       console.log('No file selected.');
     }
   }
-    showDialog() {
-        this.visible = true;
-    }
+  showDialog() {
+    this.visible = true;
+  }
+  cancelDialog() {
+    this.visible = false;
+    this.selectedFile = null;
+  }
 
 
 

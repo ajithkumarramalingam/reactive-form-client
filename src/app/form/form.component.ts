@@ -4,7 +4,6 @@ import { MessageService } from 'primeng/api';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from '../app.service';
 import * as XLSX from 'xlsx';
-import { window, windowWhen } from 'rxjs';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -24,6 +23,8 @@ export class FormComponent implements OnInit {
   selectedFile: File | null = null;
   selectedFileUrl: string | ArrayBuffer | null | undefined;
   selectedFileName: string | any;
+  data: any;
+  options: any;
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -32,17 +33,70 @@ export class FormComponent implements OnInit {
   commonForm: FormGroup | any;
   cities: City[] | any;
   selectedCountry: string | undefined;
-  jsonData: Array<any> = []
+  jsonData: Array<any> = [];
   visible: boolean = false;
-  allData:any;
-  payloads:any;
-  name:string='';
-  email:string='';
-  phoneNumber:string='';
-  
-
-
+  allData: any;
+  payloads: any;
+  name: string='';
+  email: string='';
+  phoneNumber: string='';
   ngOnInit(): void {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    
+    this.data = {
+        labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+        datasets: [
+            {
+                label: 'My First dataset',
+                borderColor: documentStyle.getPropertyValue('--yellow-400'),
+                pointBackgroundColor: documentStyle.getPropertyValue('--yellow-400'),
+                pointBorderColor: documentStyle.getPropertyValue('--yellow-400'),
+                pointHoverBackgroundColor: textColor,
+                pointHoverBorderColor: documentStyle.getPropertyValue('--yellow-400'),
+                data: [65, 59, 90, 81, 56, 55, 40]
+            },
+            {
+                label: 'My Second dataset',
+                borderColor: documentStyle.getPropertyValue('--pink-400'),
+                pointBackgroundColor: documentStyle.getPropertyValue('--pink-400'),
+                pointBorderColor: documentStyle.getPropertyValue('--pink-400'),
+                pointHoverBackgroundColor: textColor,
+                pointHoverBorderColor: documentStyle.getPropertyValue('--pink-400'),
+                data: [28, 48, 40, 19, 96, 27, 50]
+            },
+            {
+              label: 'My Third dataset',
+              borderColor: documentStyle.getPropertyValue('--red-400'),
+              pointBackgroundColor: documentStyle.getPropertyValue('--red-400'),
+              pointBorderColor: documentStyle.getPropertyValue('--red-400'),
+              pointHoverBackgroundColor: textColor,
+              pointHoverBorderColor: documentStyle.getPropertyValue('--red-400'),
+              data: [10, 38, 70, 89, 16, 27, 100]
+          }
+        ]
+    };
+    
+    this.options = {
+        plugins: {
+            legend: {
+                labels: {
+                    color: textColor
+                }
+            }
+        },
+        scales: {
+            r: {
+                grid: {
+                    color: textColorSecondary
+                },
+                pointLabels: {
+                    color: textColorSecondary
+                }
+            }
+        }
+    };
     this.commonForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required]],
@@ -87,13 +141,19 @@ export class FormComponent implements OnInit {
     fileReader.readAsBinaryString(file);
   }
   insert() {
-   this.payloads = this.payloads.map((e:any)=>({
-    name:e.Name,
-    email:e.Email,
-    phoneNumber:e.Phone
-   }))
-  console.log(this.payloads,"bodyyyyyyyyyy");
-    console.log("payload", this.payloads);
+  //  this.payloads = this.payloads.map((e:any)=>({
+  //   name:e.Name,
+  //   email:e.Email,
+  //   phoneNumber:e.Phone
+  //  }))
+  // console.log(this.payloads,"bodyyyyyyyyyy");
+  //   console.log("payload", this.payloads);
+  //   this.appservice.insert(this.payloads).subscribe((data:any)=>{
+  //     console.log(data,"dataaaaaaaa");
+  //     this.allData=data;
+  //     console.log(this.allData,"allllllllllll");
+  //   })
+
     this.appservice.insert(this.payloads).subscribe((data:any)=>{
       console.log(data,"dataaaaaaaa");
       this.allData=data;
@@ -102,8 +162,6 @@ export class FormComponent implements OnInit {
     this.visible = false;
     this.selectedFile = null;
   }
-  
-
 
   onUpload() {
     if (this.selectedFile) {
@@ -115,22 +173,20 @@ export class FormComponent implements OnInit {
         },
         (error) => {
           console.error('File upload failed:', error);
-        }
-      );
+        });
     }
     else {
       console.log('No file selected.');
     }
   }
+
   showDialog() {
     this.visible = true;
   }
+
   cancelDialog() {
     this.visible = false;
     this.selectedFile = null;
   }
-
-
-
 
 }

@@ -16,12 +16,16 @@ import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AppService } from './app.service';
 import { DialogModule } from 'primeng/dialog';
+import { ChartModule } from 'primeng/chart';
+import { D3ChartComponent } from './d3-chart/d3-chart.component';
+import { OrganizationChartModule } from 'primeng/organizationchart';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent
+    FormComponent,
+    D3ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,9 @@ import { DialogModule } from 'primeng/dialog';
     MultiSelectModule,
     CalendarModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    ChartModule,
+    OrganizationChartModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

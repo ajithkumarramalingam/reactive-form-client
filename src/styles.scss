@@ -19,3 +19,25 @@
         }
     }
 }
+.radar {
+    text-align: center;
+    .p-element {
+        div {
+            display: flex;
+            justify-content: center;
+            canvas {
+                width: 50% !important;
+                height: 100% !important;
+            }
+        }
+    }
+}
+
+    .p-element {
+        div {
+            canvas {
+                width: 30% !important;
+                height: auto !important;
+            }
+        }  
+    }

@@ -9,7 +9,16 @@
 		</ng-template>
 	</p-organizationChart>
 </div>
+<div class="pieChart">
+	<div style="width: 30% !important; height: auto !important;">
+		<p-chart type="pie" [data]="pie" [options]="options"></p-chart>
+	</div>
+</div>
 
-<div>
-    <p-chart type="pie" [data]="pie" [options]="options"></p-chart>
+<div class="horizontalBarChart">
+	<p-chart type="bar" [data]="bar" [options]="choice"></p-chart>
+</div>
+
+<div class="lineChart">
+	<p-chart type="line" [data]="line" [options]="options"></p-chart>
 </div>

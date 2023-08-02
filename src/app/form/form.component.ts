@@ -141,18 +141,18 @@ export class FormComponent implements OnInit {
     fileReader.readAsBinaryString(file);
   }
   insert() {
-  //  this.payloads = this.payloads.map((e:any)=>({
-  //   name:e.Name,
-  //   email:e.Email,
-  //   phoneNumber:e.Phone
-  //  }))
-  // console.log(this.payloads,"bodyyyyyyyyyy");
-  //   console.log("payload", this.payloads);
-  //   this.appservice.insert(this.payloads).subscribe((data:any)=>{
-  //     console.log(data,"dataaaaaaaa");
-  //     this.allData=data;
-  //     console.log(this.allData,"allllllllllll");
-  //   })
+   this.payloads = this.payloads.map((e:any)=>({
+    name:e.Name,
+    email:e.Email,
+    phoneNumber:e.Phone
+   }))
+  console.log(this.payloads,"bodyyyyyyyyyy");
+    console.log("payload", this.payloads);
+    this.appservice.insert(this.payloads).subscribe((data:any)=>{
+      console.log(data,"dataaaaaaaa");
+      this.allData=data;
+      console.log(this.allData,"allllllllllll");
+    })
 
     this.appservice.insert(this.payloads).subscribe((data:any)=>{
       console.log(data,"dataaaaaaaa");

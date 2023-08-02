@@ -19,13 +19,16 @@ import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
 import { D3ChartComponent } from './d3-chart/d3-chart.component';
 import { OrganizationChartModule } from 'primeng/organizationchart';
+import { ExceldownloadComponent } from './exceldownload/exceldownload.component';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
-    D3ChartComponent
+    D3ChartComponent,
+    ExceldownloadComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { OrganizationChartModule } from 'primeng/organizationchart';
     FileUploadModule,
     DialogModule,
     ChartModule,
-    OrganizationChartModule
+    OrganizationChartModule,
+    TableModule,
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

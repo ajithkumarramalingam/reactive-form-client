@@ -20,15 +20,15 @@ interface City {
   providers: [MessageService]
 })
 export class FormComponent implements OnInit {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private appservice: AppService) { }
   selectedFile: File | null = null;
   selectedFileUrl: string | ArrayBuffer | null | undefined;
   selectedFileName: string | any;
   data: any;
   options: any;
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private appservice: AppService) { }
   uploadedFiles: any[] = [];
   commonForm: FormGroup | any;
   cities: City[] | any;
@@ -122,24 +122,6 @@ export class FormComponent implements OnInit {
     { name: 'Female', key: 'F' }
   ];
 
-
-  onFileChange(event: any): void {
-    this.selectedFile = event.target.files[0] as File;
-    this.selectedFileName = this.selectedFile?.name || '';
-    const file = event.target.files[0];
-    const fileReader = new FileReader();
-    fileReader.onload = (e: any) => {
-      const data = e.target.result;
-      const workbook = XLSX.read(data, { type: 'binary' });
-      const firstSheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[firstSheetName];
-      this.jsonData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-      console.log('this.jsonDatathis.jsonData', this.jsonData)
-      this.payloads = this.jsonData;
-      console.log(this.payloads,"payload...................."); 
-    };
-    fileReader.readAsBinaryString(file);
-  }
   insert() {
    this.payloads = this.payloads.map((e:any)=>({
     name:e.Name,
@@ -153,40 +135,65 @@ export class FormComponent implements OnInit {
       this.allData=data;
       console.log(this.allData,"allllllllllll");
     })
-
-    this.appservice.insert(this.payloads).subscribe((data:any)=>{
-      console.log(data,"dataaaaaaaa");
-      this.allData=data;
-      console.log(this.allData,"allllllllllll");
-    })
     this.visible = false;
     this.selectedFile = null;
   }
-
-  onUpload() {
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile);
-      this.http.post('your-upload-endpoint', formData).subscribe(
-        (response) => {
-          console.log('File uploaded successfully:', response);
-        },
-        (error) => {
-          console.error('File upload failed:', error);
-        });
-    }
-    else {
-      console.log('No file selected.');
-    }
-  }
-
   showDialog() {
     this.visible = true;
   }
-
   cancelDialog() {
     this.visible = false;
     this.selectedFile = null;
   }
 
+onFileChange(event: any): void {
+  const file = event.target.files[0];
+  this.readFile(file);
 }
+
+onFileDrop(event: any): void {
+  event.preventDefault();
+  const file = event.dataTransfer.files[0];
+  this.readFile(file);
+}
+
+onDragOver(event: any): void {
+  event.preventDefault();
+}
+
+readFile(file: File): void {
+  console.log("file...............", file);
+  this.selectedFile = file;
+  this.selectedFileName = this.selectedFile?.name || '';
+  const fileReader = new FileReader();
+  fileReader.onload = (e: any) => {
+    const data = e.target.result;
+    const workbook = XLSX.read(data, { type: 'binary' });
+    const firstSheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[firstSheetName];
+    this.jsonData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+    this.payloads = this.jsonData;
+    console.log(this.payloads, "-------------------------");
+  };
+  fileReader.readAsBinaryString(file);
+}
+
+  // onFileChange(event: any): void {
+  //   this.selectedFile = event.target.files[0] as File;
+  //   this.selectedFileName = this.selectedFile?.name || '';
+  //   const file = event.target.files[0];
+  //   const fileReader = new FileReader();
+  //   fileReader.onload = (e: any) => {
+  //     const data = e.target.result;
+  //     const workbook = XLSX.read(data, { type: 'binary' });
+  //     const firstSheetName = workbook.SheetNames[0];
+  //     const worksheet = workbook.Sheets[firstSheetName];
+  //     this.jsonData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+  //     console.log('this.jsonDatathis.jsonData', this.jsonData)
+  //     this.payloads = this.jsonData;
+  //     console.log(this.payloads,"payload....................");
+
+  //   };
+  //   fileReader.readAsBinaryString(file);
+  // }
+  }

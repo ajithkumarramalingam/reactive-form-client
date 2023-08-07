@@ -21,6 +21,8 @@ import { D3ChartComponent } from './d3-chart/d3-chart.component';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { ExceldownloadComponent } from './exceldownload/exceldownload.component';
 import { TableModule } from 'primeng/table';
+import { BulkUploadComponent } from './bulk-upload/bulk-upload.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { TableModule } from 'primeng/table';
     AppComponent,
     FormComponent,
     D3ChartComponent,
-    ExceldownloadComponent
+    ExceldownloadComponent,
+    BulkUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { TableModule } from 'primeng/table';
     ChartModule,
     OrganizationChartModule,
     TableModule,
+    NgxDropzoneModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

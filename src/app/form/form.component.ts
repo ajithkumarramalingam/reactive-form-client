@@ -41,62 +41,62 @@ export class FormComponent implements OnInit {
   email: string='';
   phoneNumber: string='';
   ngOnInit(): void {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    // const documentStyle = getComputedStyle(document.documentElement);
+    // const textColor = documentStyle.getPropertyValue('--text-color');
+    // const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     
-    this.data = {
-        labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
-        datasets: [
-            {
-                label: 'My First dataset',
-                borderColor: documentStyle.getPropertyValue('--yellow-400'),
-                pointBackgroundColor: documentStyle.getPropertyValue('--yellow-400'),
-                pointBorderColor: documentStyle.getPropertyValue('--yellow-400'),
-                pointHoverBackgroundColor: textColor,
-                pointHoverBorderColor: documentStyle.getPropertyValue('--yellow-400'),
-                data: [65, 59, 90, 81, 56, 55, 40]
-            },
-            {
-                label: 'My Second dataset',
-                borderColor: documentStyle.getPropertyValue('--pink-400'),
-                pointBackgroundColor: documentStyle.getPropertyValue('--pink-400'),
-                pointBorderColor: documentStyle.getPropertyValue('--pink-400'),
-                pointHoverBackgroundColor: textColor,
-                pointHoverBorderColor: documentStyle.getPropertyValue('--pink-400'),
-                data: [28, 48, 40, 19, 96, 27, 50]
-            },
-            {
-              label: 'My Third dataset',
-              borderColor: documentStyle.getPropertyValue('--red-400'),
-              pointBackgroundColor: documentStyle.getPropertyValue('--red-400'),
-              pointBorderColor: documentStyle.getPropertyValue('--red-400'),
-              pointHoverBackgroundColor: textColor,
-              pointHoverBorderColor: documentStyle.getPropertyValue('--red-400'),
-              data: [10, 38, 70, 89, 16, 27, 100]
-          }
-        ]
-    };
+    // this.data = {
+    //     labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+    //     datasets: [
+    //         {
+    //             label: 'My First dataset',
+    //             borderColor: documentStyle.getPropertyValue('--yellow-400'),
+    //             pointBackgroundColor: documentStyle.getPropertyValue('--yellow-400'),
+    //             pointBorderColor: documentStyle.getPropertyValue('--yellow-400'),
+    //             pointHoverBackgroundColor: textColor,
+    //             pointHoverBorderColor: documentStyle.getPropertyValue('--yellow-400'),
+    //             data: [65, 59, 90, 81, 56, 55, 40]
+    //         },
+    //         {
+    //             label: 'My Second dataset',
+    //             borderColor: documentStyle.getPropertyValue('--pink-400'),
+    //             pointBackgroundColor: documentStyle.getPropertyValue('--pink-400'),
+    //             pointBorderColor: documentStyle.getPropertyValue('--pink-400'),
+    //             pointHoverBackgroundColor: textColor,
+    //             pointHoverBorderColor: documentStyle.getPropertyValue('--pink-400'),
+    //             data: [28, 48, 40, 19, 96, 27, 50]
+    //         },
+    //         {
+    //           label: 'My Third dataset',
+    //           borderColor: documentStyle.getPropertyValue('--red-400'),
+    //           pointBackgroundColor: documentStyle.getPropertyValue('--red-400'),
+    //           pointBorderColor: documentStyle.getPropertyValue('--red-400'),
+    //           pointHoverBackgroundColor: textColor,
+    //           pointHoverBorderColor: documentStyle.getPropertyValue('--red-400'),
+    //           data: [10, 38, 70, 89, 16, 27, 100]
+    //       }
+    //     ]
+    // };
     
-    this.options = {
-        plugins: {
-            legend: {
-                labels: {
-                    color: textColor
-                }
-            }
-        },
-        scales: {
-            r: {
-                grid: {
-                    color: textColorSecondary
-                },
-                pointLabels: {
-                    color: textColorSecondary
-                }
-            }
-        }
-    };
+    // this.options = {
+    //     plugins: {
+    //         legend: {
+    //             labels: {
+    //                 color: textColor
+    //             }
+    //         }
+    //     },
+    //     scales: {
+    //         r: {
+    //             grid: {
+    //                 color: textColorSecondary
+    //             },
+    //             pointLabels: {
+    //                 color: textColorSecondary
+    //             }
+    //         }
+    //     }
+    // };
     this.commonForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required]],

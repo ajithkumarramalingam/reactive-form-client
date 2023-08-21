@@ -1,5 +1,25 @@
 .reactive {
     form {
+        .field {
+            .sub-field {
+              .p-multiselect {
+                width: 50%;
+                font-size: 13px;
+              }
+              .p-inputtext {
+                width: 50%;
+                font-size: 13px;
+              }
+              .p-dropdown {
+                width: 50%;
+                // font-size: 13px;
+              }
+              .p-calendar {
+                width: 50%;
+                // font-size: 13px;
+              }
+            }
+          }
         .upload-dia {
             .p-dialog {
                 width: 400px !important;

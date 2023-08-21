@@ -51,7 +51,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ChartModule,
     OrganizationChartModule,
     TableModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

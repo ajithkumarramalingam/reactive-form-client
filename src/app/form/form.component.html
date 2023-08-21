@@ -1,70 +1,85 @@
 <div class="reactive">
     <form action="" [formGroup]="commonForm">
-        <div class="name-box">
-            <label for="name">Name</label>
-            <input type="text" pInputText formControlName="name" placeholder="Enter a Name" />
-        </div>
-        <div class="email-box">
-            <label for="email">Email</label>
-            <input type="text" pInputText formControlName="email" placeholder="Enter a Email" />
-        </div>
-        <div class="mobileNumber-box">
-            <label for="mobileNumber">Mobile number</label>
-            <input type="text" pInputText formControlName="mobileNumber" placeholder="Enter a Mobilenumber" />
-        </div>
-        <div class="message-box">
-            <label for="message">Message</label>
-            <textarea rows="5" cols="30" pInputTextarea formControlName="message" placeholder="Enter a Message">
-            </textarea>
-        </div>
-        <div class="radio-btn">
-            <label for="gender">Gender</label>
-            <div *ngFor="let category of categories" class="field-checkbox">
-                <p-radioButton [inputId]="category.key" [value]="category" formControlName="gender">
-                </p-radioButton>
-                <label [for]="category.key" class="ml-2">{{ category.name }}</label>
+        <div class="grid field">
+            <div class="col-6 name-box sub-field">
+                <label for="name">Name</label>
+                <input type="text" pInputText formControlName="name" placeholder="Enter a Name" />
+            </div>
+            <div class="col-6 email-box sub-field">
+                <label for="email">Email</label>
+                <input type="text" pInputText formControlName="email" placeholder="Enter a Email" />
             </div>
         </div>
-        <div class="check-box">
-            <label for="city">City</label>
-            <div class="single">
-                <p-checkbox formControlName="city" value="New York" inputId="ny">
-                </p-checkbox>
-                <label for="ny">New York</label>
+
+        <div class="grid field">
+            <div class="col-6 mobileNumber-box sub-field">
+                <label for="mobileNumber">Mobile number</label>
+                <input type="text" pInputText formControlName="mobileNumber" placeholder="Enter a Mobilenumber" />
+            </div>
+            <div class="col-6 dropdown sub-field">
+                <label for="country">Country</label>
+                <p-dropdown [options]="cities" formControlName="country" optionLabel="name" [filter]="true"
+                    placeholder="Select a Country"></p-dropdown>
             </div>
         </div>
-        <div class="multiple-check">
-            <label for="">Food</label>
-            <div class="multi-box">
-                <p-checkbox formControlName="food" value="New York" inputId="ny">
-                </p-checkbox>
-                <label for="ny">Breakfast</label>
+
+        <div class="grid field">
+            <div class="col-6 multi-dropdown sub-field">
+                <label for="">Cities</label>
+                <p-multiSelect [options]="cities" formControlName="cities" optionLabel="name"
+                    placeholder="Select a Cities"></p-multiSelect>
             </div>
-            <div class="multi-box">
-                <p-checkbox formControlName="food" value="New York" inputId="ny">
-                </p-checkbox>
-                <label for="ny">Lunch</label>
-            </div>
-            <div class="multi-box">
-                <p-checkbox formControlName="food" value="New York" inputId="ny">
-                </p-checkbox>
-                <label for="ny">Dinner</label>
+            <div class="col-6 calender sub-field">
+                <label for="">Calender</label>
+                <p-calendar formControlName="calender" [showIcon]="true" placeholder="Enter a date"></p-calendar>
             </div>
         </div>
-        <div class="dropdown">
-            <label for="country">Country</label>
-            <p-dropdown [options]="cities" formControlName="country" optionLabel="name" [filter]="true"
-                placeholder="Select a Country"></p-dropdown>
+
+        <div class="grid field">
+            <div class="col-6 message-box sub-field">
+                <label for="message">Message</label>
+                <textarea rows="5" cols="30" pInputTextarea formControlName="message" placeholder="Enter a Message">
+                </textarea>
+            </div>
+            <div class="col-6 radio-btn sub-field">
+                <label for="gender">Gender</label>
+                <div *ngFor="let category of categories" class="field-checkbox">
+                    <p-radioButton [inputId]="category.key" [value]="category" formControlName="gender">
+                    </p-radioButton>
+                    <label [for]="category.key" class="ml-2">{{ category.name }}</label>
+                </div>
+            </div>
         </div>
-        <div class="multi-dropdown">
-            <label for="">Cities</label>
-            <p-multiSelect [options]="cities" formControlName="cities" optionLabel="name"
-                placeholder="Select a Cities"></p-multiSelect>
+
+        <div class="grid field">
+            <div class="col-6 multiple-check sub-field">
+                <label for="">Food</label>
+                <div class="multi-box">
+                    <p-checkbox formControlName="food" value="New York" inputId="ny">
+                    </p-checkbox>
+                    <label for="ny">Breakfast</label>
+                </div>
+                <div class="multi-box">
+                    <p-checkbox formControlName="food" value="New York" inputId="ny">
+                    </p-checkbox>
+                    <label for="ny">Lunch</label>
+                </div>
+                <div class="multi-box">
+                    <p-checkbox formControlName="food" value="New York" inputId="ny">
+                    </p-checkbox>
+                    <label for="ny">Dinner</label>
+                </div>
+            </div>
+            <div class="col-6 check-box sub-field">
+                <label for="city">City</label>
+                <div class="multi-box">
+                    <p-checkbox formControlName="city" value="New York" inputId="ny">
+                    </p-checkbox>
+                    <label for="ny">New York</label>
+                </div>
+            </div>  
         </div>
-        <div class="calender">
-            <label for="">Calender</label>
-            <p-calendar formControlName="calender" [showIcon]="true" placeholder="Enter a date"></p-calendar>
-        </div>
+      
         <div class="upload-dia">
             <p-button label="Upload" (click)="showDialog()"></p-button>
             <p-dialog header="Upload File" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
@@ -95,6 +110,6 @@
     </form>
 </div>
 
-<div class="radar">
+<!-- <div class="radar">
     <p-chart type="radar" [data]="data" [options]="options"></p-chart>
-</div>
+</div> -->

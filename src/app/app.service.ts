@@ -8,6 +8,7 @@ import { saveAs } from 'file-saver';
 })
 export class AppService {
   url = 'http://localhost:3000/reactive/';
+  getProductsMini: any;
   constructor(private http: HttpClient) { }
   insert (payloads:any) {
     return this.http.post(this.url+ 'insert', payloads);

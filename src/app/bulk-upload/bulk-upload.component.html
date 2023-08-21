@@ -1,0 +1,16 @@
+<!-- <input type="text" appTimeInput>
+<input type="text" [(ngModel)]="timeValue" (keyup)="formatTime()">
+ -->
+ <div class="form-group shift-from">
+    <label class="input-label" for="From">From</label>
+    <p-calendar
+      styleClass="custom-calendar"
+      formControlName="startTime"
+      placeholder="Start Time"
+      [timeOnly]="true"
+      [hourFormat]="'12'"
+      inputId="timeonly"
+      (keyup)="formatTime($event)"
+    ></p-calendar>
+  </div>
+  
